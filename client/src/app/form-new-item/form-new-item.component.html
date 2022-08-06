@@ -1,0 +1,22 @@
+<form action="">
+  <div class="row align-items-center">
+    <div class="input-group mb-2">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="New {{ label }}"
+        id="newItem"
+        #newItem
+      />
+      <button
+        (click)="onAddNewItem(newItem.value)"
+        class="btn btn-primary"
+        type="button"
+        [ngClass]="[className]"
+      >
+        Add
+        {{ label }}
+      </button>
+    </div>
+  </div>
+</form>
