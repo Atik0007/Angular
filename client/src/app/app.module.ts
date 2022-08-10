@@ -7,6 +7,7 @@ import { FormNewItemComponent } from './form-new-item/form-new-item.component';
 import { CitiesComponent } from './cities/cities.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     FormNewItemComponent,
     CitiesComponent,
     FilterPipe,
+    ContactComponent,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [],
