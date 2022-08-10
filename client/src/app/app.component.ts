@@ -14,6 +14,9 @@ export class AppComponent implements OnInit {
 
   constructor() {}
 
+  date = new Date();
+  criteria = '';
+
   ngOnInit(): void {}
 
   addNewCity(city: string): void {
