@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 my-3">
+      <app-form-new-item
+        (onAddNewItemEvent)="addNewCity($event)"
+        [label]="'city'"
+        [className]="'btn-info'"
+      ></app-form-new-item>
+    </div>
+    <div class="col-md-6 my-3">
+      <input
+        type="text"
+        placeholder="Search..."
+        class="form-control"
+        [(ngModel)]="criteria"
+      />
+    </div>
+    <div class="col-md-8">
+      <ul>
+        <app-cities
+          *ngFor="let city of cities | filter: criteria"
+          (cityClickedEvent)="onCityClicked($event)"
+          [city]="city"
+          [selection]="selection"
+        ></app-cities>
+      </ul>
+      <p>{{ date | date }}</p>
+      <!--     <p>{{ date }}</p>
+        <p>{{ date | date: "full" }}</p> -->
+      <!--  <ul>
+          <li
+            *ngFor="let city of cities"
+            (click)="onCityClicked(city)"
+            [ngClass]="{ 'alert alert-info': city === selection }"
+          >
+            {{ city }}
+          </li>
+        </ul> -->
+    </div>
+
+    <div class="col-md-4">
+      <div *ngIf="selection">
+        <p>Your city is {{ selection }}</p>
+        <app-button
+          (click)="onClick()"
+          [label]="'clear you section'"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</div>
