@@ -1,0 +1,95 @@
+<h1>Contact form</h1>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+  <div class="mb-4">
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+      required
+      formControlName="name"
+    />
+    <div
+      *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['required']"
+      class="alert alert-danger my-1"
+    >
+      This field is required
+    </div>
+    <div
+      *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['minlength']"
+      class="alert alert-danger my-1"
+    >
+      Name must be longer than
+      {{contactForm.get('name')?.errors?.['minlength']?.requiredLength}}
+      characters
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="checkAdult" class="form-label"
+      >Are you over 18 years of age?</label
+    >
+    <input
+      type="checkbox"
+      class="form-check"
+      id="checkAdult"
+      name="checkAdult"
+      required
+      formControlName="checkAdult"
+    />
+    <div
+      *ngIf="contactForm.get('checkAdult')?.touched && contactForm.get('checkAdult')?.errors?.['required']"
+      class="alert alert-danger my-1"
+    >
+      This field is required
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="deoartment" class="form-label">Department</label>
+    <select
+      name="department"
+      id="department"
+      class="form-select form-select-sm"
+      required
+      formControlName="department"
+    >
+      <option selected>Select</option>
+      <option value="marketing">Marketing</option>
+      <option value="sales">Sales</option>
+      <option value="other">Other</option>
+    </select>
+    <div
+      *ngIf="contactForm.get('department')?.touched && contactForm.get('department')?.errors?.['required']"
+      class="alert alert-danger my-1"
+    >
+      This field is required
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="comment" class="form-label">Comment</label>
+    <textarea
+      name="comment"
+      id="comment"
+      class="form-control"
+      rows="3"
+      placeholder="Enter your comment..."
+      required
+      formControlName="comment"
+    ></textarea>
+    <div
+      *ngIf="contactForm.get('comment')?.touched && contactForm.get('comment')?.errors?.['required']"
+      class="alert alert-danger my-1"
+    >
+      This field is required
+    </div>
+  </div>
+  <div class="float-end d-grid gap-2 col-4 my-3">
+    <button class="btn btn-info btn-lg" [disabled]="contactForm.invalid">
+      Send
+    </button>
+  </div>
+</form>
