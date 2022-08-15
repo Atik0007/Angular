@@ -6,6 +6,7 @@ import { PermissionsGuard } from './guards/permissions.guard';
 import { WithoutSaveGuard } from './guards/without-save.guard';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DataResolverService } from './resolvers/data.resolver.service';
 import { DetailsComponent } from './users/details/details.component';
 import { ListComponent } from './users/list/list.component';
 import { UserComponent } from './users/user/user.component';
@@ -16,9 +17,14 @@ const routes: Routes = [
     path: 'contact-reactive',
     component: ContactReactiveComponent,
     canDeactivate: [WithoutSaveGuard],
+    resolve: { departments: DataResolverService },
   },
   { path: 'contact-template/:id', component: ContactComponent },
-  { path: 'home', component: HomeComponent },
+  {
+    path: 'home',
+    component: HomeComponent,
+    resolve: { departments: DataResolverService },
+  },
   {
     path: 'users',
     component: UserComponent,

@@ -57,9 +57,11 @@
       formControlName="department"
     >
       <option selected>Select</option>
-      <option value="marketing">Marketing</option>
-      <option value="sales">Sales</option>
-      <option value="other">Other</option>
+      <option *ngFor="let department of departments" [value]="department">
+        {{ department }}
+      </option>
+      <!-- <option value="sales">Sales</option>
+      <option value="other">Other</option> -->
     </select>
     <div
       *ngIf="contactForm.get('department')?.touched && contactForm.get('department')?.errors?.['required']"
