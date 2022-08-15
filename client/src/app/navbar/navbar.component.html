@@ -19,20 +19,35 @@
             >Home</a
           >
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a
             class="nav-link"
             routerLinkActive="active"
             routerLink="/contact-reactive"
             >Reactive</a
           >
-        </li>
+        </li> -->
         <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" (click)="goToReactive()"
+            >Reactive</a
+          >
+        </li>
+        <!-- <li class="nav-item">
           <a
             class="nav-link"
             routerLinkActive="active"
             routerLink="/contact-template"
             >Template-driven</a
+          >
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" (click)="goToTemplate()"
+            >Template-driven</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/users"
+            >Users</a
           >
         </li>
       </ul>
