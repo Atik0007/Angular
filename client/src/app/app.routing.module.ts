@@ -13,11 +13,18 @@ import { UserComponent } from './users/user/user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  // {
+  //   path: 'contact-reactive',
+  //   component: ContactReactiveComponent,
+  //   canDeactivate: [WithoutSaveGuard],
+  //   resolve: { departments: DataResolverService },
+  // },
   {
-    path: 'contact-reactive',
-    component: ContactReactiveComponent,
-    canDeactivate: [WithoutSaveGuard],
-    resolve: { departments: DataResolverService },
+    path: 'contact-template',
+    loadChildren: () =>
+      import('./contact-reactive/contact-reactive.module').then(
+        (m) => m.ContactReactiveModule
+      ),
   },
   { path: 'contact-template/:id', component: ContactComponent },
   {
