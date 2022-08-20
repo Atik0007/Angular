@@ -5,16 +5,29 @@
         type="text"
         class="form-control"
         placeholder="New {{ label }}"
+        name="newItem"
         id="newItem"
+        [ngModel]="selection?.name"
         #newItem
       />
       <button
-        (click)="onAddNewItem(newItem.value)"
+        *ngIf="!selection?.name"
+        (click)="onAddNewItem(newItem.value); newItem.value = ''"
         class="btn btn-primary"
         type="button"
         [ngClass]="[className]"
       >
         Add
+        {{ label }}
+      </button>
+      <button
+        *ngIf="selection?.name"
+        (click)="onUpdateItem(selection, newItem.value); newItem.value = ''"
+        class="btn btn-primary"
+        type="button"
+        [ngClass]="[className]"
+      >
+        Update
         {{ label }}
       </button>
     </div>

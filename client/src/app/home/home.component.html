@@ -2,10 +2,12 @@
   <div class="row">
     <div class="col-md-6 my-3">
       <app-form-new-item
-        (onAddNewItemEvent)="addNewCity($event)"
-        [label]="'city'"
-        [className]="'btn-info'"
-      ></app-form-new-item>
+        [selection]="selection"
+        (onUpdateItemEvent)="onUpdateCity($event)"
+      >
+        (onAddNewItemEvent)="addNewCity($event)" [label]="'city'"
+        [className]="'btn-info'" ></app-form-new-item
+      >
     </div>
     <div class="col-md-6 my-3">
       <input
@@ -16,36 +18,36 @@
       />
     </div>
     <div class="col-md-8">
-      <ul>
-        <app-cities
-          *ngFor="let city of cities | filter: criteria"
-          (cityClickedEvent)="onCityClicked($event)"
-          [city]="city"
-          [selection]="selection"
-        ></app-cities>
-      </ul>
-      <p>{{ date | date }}</p>
+      <app-cities
+        *ngFor="let city of cities | filter: criteria"
+        (citySelectedEvent)="onCitySelected($event)"
+        (cityDeleteEvent)="onCityDelete($event)"
+        [city]="city"
+        [selection]="selection"
+      ></app-cities>
+
       <!--     <p>{{ date }}</p>
         <p>{{ date | date: "full" }}</p> -->
       <!--  <ul>
           <li
-            *ngFor="let city of cities"
-            (click)="onCityClicked(city)"
-            [ngClass]="{ 'alert alert-info': city === selection }"
+          *ngFor="let city of cities"
+          (click)="onCityClicked(city)"
+          [ngClass]="{ 'alert alert-info': city === selection }"
           >
-            {{ city }}
-          </li>
-        </ul> -->
+          {{ city }}
+        </li>
+      </ul> -->
     </div>
 
     <div class="col-md-4">
-      <div *ngIf="selection">
-        <p>Your city is {{ selection }}</p>
+      <div *ngIf="selection?.name">
+        <p>Your city is {{ selection?.name }}</p>
         <app-button
-          (click)="onClick()"
+          (click)="onClear()"
           [label]="'clear you section'"
         ></app-button>
       </div>
     </div>
+    <p>{{ date | date }}</p>
   </div>
 </div>

@@ -5,6 +5,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { City } from '../services/data.service';
 
 @Component({
   selector: 'app-form-new-item',
@@ -15,11 +16,22 @@ import {
 export class FormNewItemComponent {
   @Input() className = 'btn-primary';
   @Input() label!: string;
+  @Input() selection!: City;
 
   @Output() onAddNewItemEvent = new EventEmitter<string>();
+  @Output() onUpdateItemEvent = new EventEmitter<City>();
 
   onAddNewItem(item: string): void {
-    console.log('item: ', item);
     this.onAddNewItemEvent.emit(item);
+  }
+
+  onUpdateItem(item: City, change: string): void {
+    console.log(item, change);
+    const city: City = {
+      _id: item._id,
+      name: change,
+    };
+
+    this.onUpdateItemEvent.emit(city);
   }
 }
